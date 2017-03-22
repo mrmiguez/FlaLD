@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repox:exportedRecords xmlns:repox="http://repox.ist.utl.pt" set="fsu_digital_library" batchsize="-1" total="1000">
+  <repox:record id="oai:lib.fsu.edu.fsu_digital_library:oai:fsu.digital.flvc.org:fsu_252111" timestamp="2017-03-21">
+    <repox:metadata>
+      <mods xmlns="http://www.loc.gov/mods/v3">
+        <titleInfo>
+          <title>FSU_HPUA2008022_3836_01</title>
+        </titleInfo>
+      </mods>
+    </repox:metadata>
+  </repox:record>
+  <repox:record id="oai:lib.fsu.edu.fsu_digital_library:oai:fsu.digital.flvc.org:fsu_24694" timestamp="2017-03-21">
+    <repox:metadata>
+      <mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns="http://www.loc.gov/mods/v3" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:flvc="info:flvc/manifest/v1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+        <titleInfo>
+          <title>Fraternity fundraiser for injured student</title>
+        </titleInfo>
+        <extension>
+          <flvc:flvc>
+            <flvc:owningInstitution>FSU</flvc:owningInstitution>
+            <flvc:submittingInstitution>FSU</flvc:submittingInstitution>
+          </flvc:flvc>
+        </extension>
+        <identifier type="IID">FSUspcn329b</identifier>
+        <name type="personal">
+          <namePart type="given">Bob</namePart>
+          <namePart type="family">Mauldin</namePart>
+          <role>
+            <roleTerm authority="marcrelator" type="text">Creator</roleTerm>
+          </role>
+          <role>
+            <roleTerm authority="marcrelator" type="code">cre</roleTerm>
+          </role>
+        </name>
+        <typeOfResource>still image</typeOfResource>
+        <genre authority="gmgpc">Photographs</genre>
+        <originInfo>
+          <dateIssued encoding="w3cdtf" point="start" qualifier="approximate">1935</dateIssued>
+          <dateIssued encoding="w3cdtf" point="end" qualifier="approximate">1969</dateIssued>
+        </originInfo>
+        <physicalDescription>
+          <extent>8 x 10 in.</extent>
+          <digitalOrigin>reformatted digital</digitalOrigin>
+        </physicalDescription>
+        <abstract displayLabel="Summary">Photograph of a fundraiser for Don Anderson, an injured student.  The person wearing a formal suit is identified as Florida State University Vice President Dr. A. B. Martin who is making a donation to aid with the medical expenses of the student. The signs on the photographs read "Don's Wishing Well" and "Will your wish come true? Wishing well."</abstract>
+        <subject>
+          <topic>Students</topic>
+        </subject>
+        <subject>
+          <topic>Greek life</topic>
+        </subject>
+        <subject>
+          <topic>Fraternities and Sororities</topic>
+        </subject>
+        <accessCondition type="useAndReproduction">Use of this item is provided for non-commercial, personal, educational, and research use only. For information about the copyright and reproduction rights for this item, please contact Special Collections and Archives, Florida State University Libraries, Tallahassee, Florida.</accessCondition>
+        <recordInfo>
+          <recordChangeDate>2015-10-26</recordChangeDate>
+        </recordInfo>
+        <location displayLabel="purl">
+          <url>http://purl.flvc.org/fsu/fd/FSUspcn329b</url>
+        </location>
+      </mods:mods>
+    </repox:metadata>
+  </repox:record>
+  <repox:record id="oai:lib.fsu.edu.fsu_digital_library:oai:fsu.digital.flvc.org:fsu_9420" timestamp="2017-03-21">
+    <repox:metadata>
+      <mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns="http://www.loc.gov/mods/v3" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:flvc="info:flvc/manifest/v1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.4" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+        <titleInfo>
+          <title>Student Life Contact Sheet</title>
+        </titleInfo>
+        <identifier type="digitool">107201</identifier>
+        <name>
+          <namePart>Mittan, J. Barry</namePart>
+          <role>
+            <roleTerm authority="marcrelator" type="text">creator</roleTerm>
+          </role>
+        </name>
+        <typeOfResource>still image</typeOfResource>
+        <originInfo>
+          <publisher>Heritage Protocol, Florida State University, Tallahassee, Florida.</publisher>
+          <dateIssued keyDate="yes">circa 1965-1971</dateIssued>
+        </originInfo>
+        <note>Photographs from Florida State University student, J. Barry Mittan, class of 1971 (BS, Psychology). While a student he was a photographer for numerous FSU publications, as well as the Athletic Department and the FSU Flying High Circus. These photographs are from his student photographer portfolio and are a part of the J. Barry Mittan Photograph Collection, 1965-1971 (HP-2008-020).</note>
+        <note>Labeled CS 104. B/W; aprox. 8x10 (Accession No. HP-2008-020).</note>
+        <subject>
+          <topic>Florida State University</topic>
+        </subject>
+        <subject>
+          <topic>Photography</topic>
+        </subject>
+        <subject>
+          <topic>Mittan, J. Barry</topic>
+        </subject>
+        <subject>
+          <topic>Karate</topic>
+        </subject>
+        <subject>
+          <topic>Student Life</topic>
+        </subject>
+        <subject>
+          <topic>Journalism</topic>
+        </subject>
+        <subject>
+          <topic>circa 1960s</topic>
+        </subject>
+        <subject>
+          <topic>Campus Scenes</topic>
+        </subject>
+        <location displayLabel="purl">
+          <url>http://purl.flvc.org/fcla/dt/107201</url>
+        </location>
+        <accessCondition>This image is the property of Florida State University. Its use is governed by U.S. and international copyright laws. To obtain a high-resolution copy of this image for a fee, please contact Florida State University Heritage Protocol.</accessCondition>
+        <accessCondition type="restriction on access">This collection is open to all researchers.</accessCondition>
+        <identifier type="IID">FSDT107201</identifier>
+        <identifier type="fedora">fsu:9420</identifier>
+        <extension>
+          <flvc:flvc>
+            <flvc:owningInstitution>FSU</flvc:owningInstitution>
+            <flvc:submittingInstitution>FSU</flvc:submittingInstitution>
+            <flvc:objectHistory source="digitool">admin_unit="FSU01", ingest_id="ing2981", creator="creator:FSUEDDIE", creation_date="2008-10-29 19:08:24", modified_by="creator:FSUEDDIE", modification_date="2011-08-16 07:56:33"</flvc:objectHistory>
+          </flvc:flvc>
+        </extension>
+      </mods:mods>
+    </repox:metadata>
+  </repox:record>
+</repox:exportedRecords>
