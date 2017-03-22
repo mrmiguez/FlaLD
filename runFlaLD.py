@@ -1,20 +1,21 @@
+#!/usr/bin/env python3
+
+import sys
 import glob
 import json
+from os.path import abspath, dirname, join
 from FlaLD import FlaLD_DC, FlaLD_MODS, FlaLD_QDC
 
-def write_json_ld(docs):
-    with open('testData/all-sample2.json', 'a') as jsonOutput:
-        json.dump(docs, jsonOutput, indent=2)
+PATH = join(abspath(dirname(__file__)))
 
-for file in glob.glob('testData/*-sample2.xml'):
-    #print(file) #test
+def write_json_ld(docs):
+    with open(PATH + 'all-sample2.json', 'a') as jsonOutput:
+        json.dump(docs, jsonOutput, indent=2)        
+
+for file in glob.glob(PATH + 'debug/test_data/*Small.xml'):
     if 'fiu' in file:
-        #print('fiu', file)
-        write_json_ld(FlaLD_DC(file)) # write test
-        #print(json.dumps(FlaLD_DC(file), indent=2)) # dump test
+        write_json_ld(FlaLD_DC(file))
     elif 'fsu' in file:
-        #print('fsu', file)
-        write_json_ld(FlaLD_MODS(file))  # write test
+        write_json_ld(FlaLD_MODS(file))
     elif 'umiami' in file:
-        #print('um', file)
-        write_json_ld(FlaLD_QDC(file))  # write test
+        write_json_ld(FlaLD_QDC(file))
