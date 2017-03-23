@@ -430,8 +430,8 @@ def FlaLD_DC(file_in):
     return docs
 
 
-def FlaLD_MODS(in_file):
-    with open(in_file, encoding='utf-8') as data_in:
+def FlaLD_MODS(file_in):
+    with open(file_in, encoding='utf-8') as data_in:
         records = MODS(data_in)
         docs = []
         for record in records.record_list:
