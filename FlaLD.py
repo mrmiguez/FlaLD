@@ -205,7 +205,9 @@ def FlaLD_QDC(file_in):
                         sourceResource['rights'] = { "@id": URI_match, "text": rights_text }
                     else:
                         sourceResource['rights'] = OAI_QDC.simple_lookup(record, './/{0}rights'.format(nameSpace_default['dc']))
-
+                else:
+                    continue
+                    
                 # sourceResource.subject
                 if OAI_QDC.simple_lookup(record, './/{0}subject'.format(nameSpace_default['dc'])) is not None:
                     sourceResource['subject'] = []
@@ -218,6 +220,8 @@ def FlaLD_QDC(file_in):
                 title = OAI_QDC.simple_lookup(record, './/{0}title'.format(nameSpace_default['dc']))
                 if title is not None:
                     sourceResource['title'] = title
+                else:
+                    continue
 
                 # sourceResource.type
                 if OAI_QDC.simple_lookup(record, './/{0}type'.format(nameSpace_default['dc'])) is not None:
@@ -377,6 +381,8 @@ def FlaLD_DC(file_in):
                 rights = OAI_QDC.simple_lookup(record, './/{0}rights'.format(nameSpace_default['dc']))
                 if rights is not None:
                     sourceResource['rights'] = rights
+                else:
+                    continue
 
                 # sourceResource.subject
                 if OAI_QDC.simple_lookup(record, './/{0}subject'.format(nameSpace_default['dc'])) is not None:
@@ -391,6 +397,8 @@ def FlaLD_DC(file_in):
                 title = OAI_QDC.simple_lookup(record, './/{0}title'.format(nameSpace_default['dc']))
                 if title is not None:
                     sourceResource['title'] = title
+                else:
+                    continue #TODO logging for continue and try statements
 
                 # sourceResource.type
                 if OAI_QDC.simple_lookup(record, './/{0}type'.format(nameSpace_default['dc'])) is not None:
@@ -439,7 +447,7 @@ def FlaLD_MODS(file_in):
             sourceResource = {}
 
             # sourceResource.alternative
-            if MODS.title_constructor(record)[1:] is not None:
+            if MODS.title_constructor(record) is not None and MODS.title_constructor(record)[1:] is not None:
                 sourceResource['alternative'] = []
                 if len(MODS.title_constructor(record)[1:]) >= 1:
                     for alternative_title in MODS.title_constructor(record)[1:]:
@@ -677,6 +685,8 @@ def FlaLD_MODS(file_in):
                                                 "text": MODS.rights(record)['text']}
                 else:
                     sourceResource['rights'] = MODS.rights(record)['text']
+            else:
+                continue
 
             #except TypeError as err: #debug
             #    with open('errorDump.txt', 'a') as dumpFile:
@@ -705,7 +715,10 @@ def FlaLD_MODS(file_in):
 
             # sourceResource.title
             #try: # debug
-            sourceResource['title'] = MODS.title_constructor(record)[0]
+            if MODS.title_constructor(record) is not None:
+                sourceResource['title'] = MODS.title_constructor(record)[0]
+            else:
+                continue
 
             #except IndexError: # debug
             #    with open('errorDump.txt', 'a') as dumpFile:
