@@ -29,14 +29,15 @@ def write_json_ld(docs):
             
 # main loop
 # sys.argv[1] should be the top-level repox export dir
-for file in glob.glob(sys.argv[1] + '*/*.xml'):
+for file in glob.glob(sys.argv[1] + '*/*Small.xml'):
     '''
     if str tests will need to be changed to match repox export names
     '''
-    if 'QDCdebug' in file:
+    print(PATH)
+    if 'QDC' in file:
         write_json_ld(FlaLD_QDC(abspath(file)))
-    elif 'MODSdebug' in file:
+    elif 'MODS' in file:
         write_json_ld(FlaLD_MODS(abspath(file)))
-    elif 'DCdebug' in file:
+    elif 'DC' in file:
         write_json_ld(FlaLD_DC(abspath(file)))
      
