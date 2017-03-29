@@ -389,7 +389,7 @@ def FlaLD_DC(file_in):
                     sourceResource['subject'] = []
                     for element in OAI_QDC.split_lookup(record, './/{0}subject'.format(nameSpace_default['dc'])):
                         for term in element:
-                            term = term.rstrip("( lcsh )")
+                            term = re.sub("\( lcsh \)$", '', term) #term.rstrip(["( lcsh )"])
                             if len(term) > 0:
                                 sourceResource['subject'].append({"name": term.strip(" ") })
 
