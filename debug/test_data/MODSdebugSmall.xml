@@ -136,7 +136,7 @@
         </extension>
         <titleInfo>
           <title>Drew Shed</title>
-          <!--<subTitle>A Shed Alone</subTitle>-->
+          <subTitle>A Shed Alone</subTitle>
         </titleInfo>
         <name type="personal" authority="naf" valueURI="http://id.loc.gov/authorities/names/n91016636">
           <namePart type="family">Houck</namePart>
@@ -214,6 +214,7 @@
           <url>http://purl.flvc.org/fsu/fd/FSU_MSS_2015-007_S03_SS02_I003</url>
         </location>
         <identifier type="fedora">fsu:394576</identifier>
+        <accessCondition type="use and reproduction">WHAT A BUG!</accessCondition>
       </mods:mods>
     </repox:metadata>
   </repox:record>

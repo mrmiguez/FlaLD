@@ -351,7 +351,6 @@ class MODSTests(unittest.TestCase):
         results = []
         for record in self.mods_json:
             results.append(record['sourceResource']['title'])
-        print(results)
         self.assertTrue(all(x in results for x in expected))
 
     def test_mods_SourceResourceType(self):
