@@ -6,7 +6,7 @@ import json
 from os import remove
 from os.path import abspath, dirname, join, exists
 
-# pull in custom tranformation methods
+# pull in custom transformation methods
 from FlaLD import FlaLD_DC, FlaLD_MODS, FlaLD_QDC
 
 
