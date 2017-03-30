@@ -118,7 +118,7 @@ def FlaLD_QDC(file_in):
                 # sourceResource.date
                 date = OAI_QDC.simple_lookup(record, './/{0}created'.format(nameSpace_default['dcterms']))
                 if date is not None:
-                    sourceResource['date'] = { "begin": date, "end": date }
+                    sourceResource['date'] = { "begin": date[0], "end": date[0] }
 
                 # sourceResource.description
                 description = []
@@ -307,7 +307,7 @@ def FlaLD_DC(file_in):
                 # sourceResource.date
                 date = OAI_QDC.simple_lookup(record, './/{0}date'.format(nameSpace_default['dc']))
                 if date is not None:
-                    sourceResource['date'] = { "begin": date, "end": date }
+                    sourceResource['date'] = { "begin": date[0], "end": date[0] }
 
                 # sourceResource.description
                 description = []

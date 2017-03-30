@@ -56,6 +56,7 @@
         <recordInfo>
           <recordChangeDate>2015-10-26</recordChangeDate>
         </recordInfo>
+        <identifier type="fedora">fsu:24694</identifier>
         <location displayLabel="purl">
           <url>http://purl.flvc.org/fsu/fd/FSUspcn329b</url>
         </location>
@@ -120,6 +121,98 @@
             <flvc:objectHistory source="digitool">admin_unit="FSU01", ingest_id="ing2981", creator="creator:FSUEDDIE", creation_date="2008-10-29 19:08:24", modified_by="creator:FSUEDDIE", modification_date="2011-08-16 07:56:33"</flvc:objectHistory>
           </flvc:flvc>
         </extension>
+      </mods:mods>
+    </repox:metadata>
+  </repox:record>
+  <repox:record id="oai:lib.fsu.edu.fsu_digital_library:oai:fsu.digital.flvc.org:fsu_394576" timestamp="2017-03-21">
+    <repox:metadata>
+      <mods:mods xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:flvc="info:flvc/manifest/v1" xmlns:mods="http://www.loc.gov/mods/v3" xmlns:dcterms="http://purl.org/dc/terms/" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd" version="3.4">
+        <identifier type="IID">FSU_MSS_2015-007_S03_SS02_I003</identifier>
+        <extension>
+          <flvc:flvc>
+            <flvc:owningInstitution>FSU</flvc:owningInstitution>
+            <flvc:submittingInstitution>FSU</flvc:submittingInstitution>
+          </flvc:flvc>
+        </extension>
+        <titleInfo>
+          <title>Drew Shed</title>
+        </titleInfo>
+        <name type="personal" authority="naf" valueURI="http://id.loc.gov/authorities/names/n91016636">
+          <namePart type="family">Houck</namePart>
+          <namePart type="given">Davis W.</namePart>
+          <role>
+            <roleTerm type="text" authority="marcrelator" authorityURI="http://id.loc.gov/vocabulary/relators">Photographer</roleTerm>
+            <roleTerm type="code" authority="marcrelator" authorityURI="http://id.loc.gov/vocabulary/relators">pht</roleTerm>
+          </role>
+        </name>
+        <typeOfResource>still image</typeOfResource>
+        <genre valueURI="http://id.loc.gov/vocabulary/graphicMaterials/tgm007718" authority="gmgpc">Photographic prints</genre>
+        <originInfo>
+          <dateIssued encoding="w3cdtf">2013-05-27</dateIssued>
+        </originInfo>
+        <language>
+          <languageTerm type="text" authority="iso639-2b">English</languageTerm>
+          <languageTerm type="code" authority="iso639-2b">eng</languageTerm>
+        </language>
+        <physicalDescription>
+          <extent>3 MB</extent>
+          <digitalOrigin>reformatted digital</digitalOrigin>
+        </physicalDescription>
+        <abstract displayLabel="Summary">Photograph of the Drew Shed.</abstract>
+        <subject authority="tgn">
+          <geographicCode>7007522</geographicCode>
+        </subject>
+        <relatedItem type="host">
+          <location>
+            <url displayLabel="Finding Aid">http://purl.fcla.edu/fsu/MSS_2015-007</url>
+          </location>
+        </relatedItem>
+        <location>
+          <physicalLocation>Special Collections &amp; Archives, Florida State University Libraries, Tallahassee, Florida.</physicalLocation>
+        </location>
+        <recordInfo>
+          <descriptionStandard>dacs</descriptionStandard>
+        </recordInfo>
+        <subject authority="lcsh" authorityURI="http://id.loc.gov/authorities/subjects" valueURI="http://id.loc.gov/authorities/subjects/sh2007100199">
+          <topic>African Americans</topic>
+          <topic>Civil rights</topic>
+          <topic>History</topic>
+          <temporal>20th century</temporal>
+        </subject>
+        <subject authority="lcsh" authorityURI="http://id.loc.gov/authorities/subjects" valueURI="http://id.loc.gov/authorities/subjects/sh85001942">
+          <topic>African Americans</topic>
+          <topic>Crimes against</topic>
+        </subject>
+        <subject authority="lcsh" authorityURI="http://id.loc.gov/authorities/subjects" valueURI="http://id.loc.gov/authorities/subjects/sh85026371">
+          <topic>Civil rights</topic>
+        </subject>
+        <subject authority="lcsh" authorityURI="http://id.loc.gov/authorities/subjects" valueURI="http://id.loc.gov/authorities/subjects/sh2008106179">
+          <topic>Journalism</topic>
+          <topic>Political aspects</topic>
+          <geographic>United States</geographic>
+        </subject>
+        <subject authority="lcsh" authorityURI="http://id.loc.gov/authorities/subjects" valueURI="http://id.loc.gov/authorities/subjects/sh2008115909">
+          <geographic>Mississippi</geographic>
+          <topic>Race relations</topic>
+        </subject>
+        <subject authority="lcsh" authorityURI="http://id.loc.gov/authorities/subjects" valueURI="http://id.loc.gov/authorities/subjects/sh90002616">
+          <topic>Racism in the press</topic>
+        </subject>
+        <subject authority="lcsh" authorityURI="http://id.loc.gov/authorities/subjects" valueURI="http://id.loc.gov/authorities/subjects/sh2008110371">
+          <topic>Rhetoric</topic>
+          <topic>Political aspects</topic>
+          <geographic>United States</geographic>
+          <topic>History</topic>
+          <temporal>20th century</temporal>
+        </subject>
+        <subject authority="lcsh" authorityURI="http://id.loc.gov/authorities/subjects" valueURI="http://id.loc.gov/authorities/subjects/sh2010117082">
+          <topic>Trials (Murder)</topic>
+          <geographic>United States</geographic>
+        </subject>
+        <location displayLabel="purl">
+          <url>http://purl.flvc.org/fsu/fd/FSU_MSS_2015-007_S03_SS02_I003</url>
+        </location>
+        <identifier type="fedora">fsu:394576</identifier>
       </mods:mods>
     </repox:metadata>
   </repox:record>

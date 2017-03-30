@@ -5,19 +5,20 @@
       <oai_qdc:qualifieddc xmlns:oai_qdc="http://worldcat.org/xmlschemas/qdc-1.0/" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://worldcat.org/xmlschemas/qdc-1.0/ http://worldcat.org/xmlschemas/qdc/1.0/qdc-1.0.xsd http://purl.org/net/oclcterms http://worldcat.org/xmlschemas/oclcterms/1.4/oclcterms-1.4.xsd">
         <dc:title>Vincent Gilpin letter to Patty Munroe, September 3, 1933</dc:title>
         <dc:creator>Gilpin, Vincent</dc:creator>
-        <dcterms:abstract>In this letter Vincent Gilpin expresses sympathy after the decease of Patty Munroe's father, Ralph Munroe.</dcterms:abstract>
+        <dcterms:abstract>Test 000</dcterms:abstract>
         <dc:subject>Gilpin, Vincent; Munroe, Patty; Munroe, Ralph, 1851-1933; Letters</dc:subject>
         <dcterms:created>1933-09-03</dcterms:created>
         <dcterms:temporal>1930-1939</dcterms:temporal>
         <dcterms:spatial>Excelsior (Minn.)</dcterms:spatial>
         <dcterms:extent>1 letter</dcterms:extent>
         <dc:language>eng</dc:language>
+        <dc:description>Test 001</dc:description>
         <dcterms:isPartOf>University of Miami. Library. Special Collections</dcterms:isPartOf>
         <dcterms:isPartOf>Alan Crockwell Collection</dcterms:isPartOf>
         <dcterms:isPartOf>ASM0447</dcterms:isPartOf>
-        <dc:rights>The copyright and related rights status of this material is unknown. For additional information, please visit: http://merrick.library.miami.edu/digitalprojects/copyright.html</dc:rights>
+        <dc:rights>Rights 4A</dc:rights>
         <dc:rights>Copyright Undetermined http://rightsstatements.org/page/UND/1.0/</dc:rights>
-        <dc:type>Text</dc:type>
+        <dc:type>Tax return from a VIP</dc:type>
         <dc:format>image/tiff</dc:format>
         <dc:identifier>http://merrick.library.miami.edu/cdm/ref/collection/asm0447/id/31</dc:identifier>
       </oai_qdc:qualifieddc>
@@ -49,9 +50,9 @@
         <dcterms:isPartOf>University of Miami. Library. Special Collections</dcterms:isPartOf>
         <dcterms:isPartOf>Alan Crockwell Collection</dcterms:isPartOf>
         <dcterms:isPartOf>ASM0447</dcterms:isPartOf>
-        <dc:rights>This material is protected by copyright. Copyright is held by the creator. For additional information, please visit: http://merrick.library.miami.edu/digitalprojects/copyright.html</dc:rights>
+        <dc:rights>Rights 1C</dc:rights>
         <dc:rights>In Copyright http://rightsstatements.org/vocab/InC/1.0/</dc:rights>
-        <dc:type>Text</dc:type>
+        <dc:type>Rebel Alliance Victory Plans</dc:type>
         <dc:format>image/tiff</dc:format>
         <dc:identifier>http://merrick.library.miami.edu/cdm/ref/collection/asm0447/id/39</dc:identifier>
       </oai_qdc:qualifieddc>
@@ -83,13 +84,15 @@
         <dc:subject>Munroe, Patty; Letters</dc:subject>
         <dcterms:created>1915-04-26</dcterms:created>
         <dcterms:temporal>1910-1919</dcterms:temporal>
-        <dcterms:spatial>Coconut Grove (Miami, Fla.)</dcterms:spatial>
+        <dcterms:spatial>Death Star</dcterms:spatial>
         <dcterms:extent>1 letter</dcterms:extent>
         <dc:language>eng</dc:language>
+        <dc:description>Test 002</dc:description>
+        <dc:description>Test 003</dc:description>
         <dcterms:isPartOf>University of Miami. Library. Special Collections</dcterms:isPartOf>
         <dcterms:isPartOf>Alan Crockwell Collection</dcterms:isPartOf>
         <dcterms:isPartOf>ASM0447</dcterms:isPartOf>
-        <dc:rights>This material is protected by copyright. Copyright is held by the creator. For additional information, please visit: http://merrick.library.miami.edu/digitalprojects/copyright.html</dc:rights>
+        <dc:rights>Rights E3</dc:rights>
         <dc:rights>In Copyright http://rightsstatements.org/vocab/InC/1.0/</dc:rights>
         <dc:type>Text</dc:type>
         <dc:format>image/tiff</dc:format>

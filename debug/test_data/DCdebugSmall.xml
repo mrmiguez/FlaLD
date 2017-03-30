@@ -7,10 +7,11 @@
         <dc:description>1 postcard, postally unused; caption: "Alligator Joe watching the Young Alligators Hatch."</dc:description>
         <dc:identifier>FI07050832</dc:identifier>
         <dc:language>English</dc:language>
+        <dc:date>1974</dc:date>
         <dc:subject>Alligators--Florida--Everglades.</dc:subject>
         <dc:publisher>Miami, Florida: J.N. Chamberlain</dc:publisher>
         <dc:publisher>Miami, Florida: J.N. Chamberlain</dc:publisher>
-        <dc:rights>Please contact the owning institution for licensing and permissions. It is the users responsibility to ensure use does not violate any third party rights.</dc:rights>
+        <dc:rights>Rights 4A</dc:rights>
         <dc:identifier>http://dpanther.fiu.edu/dpService/dpPurlService/purl/FI07050832/00001</dc:identifier>
       </oai_dc:dc>
     </repox:metadata>
@@ -26,9 +27,10 @@
         <dc:subject>Homestead (Fla.) ( lcsh )</dc:subject>
         <dc:subject>Everglades (Fla.)</dc:subject>
         <dc:coverage>Homestead (Fla.)</dc:coverage>
+        <dc:date>1972</dc:date>
         <dc:publisher>Chicago: CT Co.</dc:publisher>
         <dc:publisher>Chicago: CT Co.</dc:publisher>
-        <dc:rights>Please contact the owning institution for licensing and permissions. It is the users responsibility to ensure use does not violate any third party rights.</dc:rights>
+        <dc:rights>Rights 1C</dc:rights>
         <dc:identifier>http://dpanther.fiu.edu/dpService/dpPurlService/purl/FI07050842/00001</dc:identifier>
       </oai_dc:dc>
     </repox:metadata>
@@ -44,7 +46,7 @@
         <dc:subject>Everglades (Fla.)</dc:subject>
         <dc:publisher>Unidentified</dc:publisher>
         <dc:publisher>Unidentified</dc:publisher>
-        <dc:rights>Please contact the owning institution for licensing and permissions. It is the users responsibility to ensure use does not violate any third party rights.</dc:rights>
+        <dc:rights>Rights E3</dc:rights>
         <dc:identifier>http://dpanther.fiu.edu/dpService/dpPurlService/purl/FI07040407/00001</dc:identifier>
       </oai_dc:dc>
     </repox:metadata>
