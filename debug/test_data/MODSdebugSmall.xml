@@ -76,7 +76,7 @@
             <roleTerm authority="marcrelator" type="text">creator</roleTerm>
           </role>
         </name>
-        <typeOfResource>still image</typeOfResource>
+        <typeOfResource>moving image</typeOfResource>
         <originInfo>
           <publisher>Heritage Protocol, Florida State University, Tallahassee, Florida.</publisher>
           <dateIssued keyDate="yes">circa 1965-1971</dateIssued>
@@ -126,7 +126,7 @@
   </repox:record>
   <repox:record id="oai:lib.fsu.edu.fsu_digital_library:oai:fsu.digital.flvc.org:fsu_394576" timestamp="2017-03-21">
     <repox:metadata>
-      <mods:mods xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:flvc="info:flvc/manifest/v1" xmlns:mods="http://www.loc.gov/mods/v3" xmlns:dcterms="http://purl.org/dc/terms/" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd" version="3.4">
+      <mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns="http://www.loc.gov/mods/v3" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:flvc="info:flvc/manifest/v1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.4" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
         <identifier type="IID">FSU_MSS_2015-007_S03_SS02_I003</identifier>
         <extension>
           <flvc:flvc>
@@ -136,6 +136,7 @@
         </extension>
         <titleInfo>
           <title>Drew Shed</title>
+          <!--<subTitle>A Shed Alone</subTitle>-->
         </titleInfo>
         <name type="personal" authority="naf" valueURI="http://id.loc.gov/authorities/names/n91016636">
           <namePart type="family">Houck</namePart>
@@ -145,7 +146,7 @@
             <roleTerm type="code" authority="marcrelator" authorityURI="http://id.loc.gov/vocabulary/relators">pht</roleTerm>
           </role>
         </name>
-        <typeOfResource>still image</typeOfResource>
+        <typeOfResource>electro-magnetic vibrations in the range of visible frequencies</typeOfResource>
         <genre valueURI="http://id.loc.gov/vocabulary/graphicMaterials/tgm007718" authority="gmgpc">Photographic prints</genre>
         <originInfo>
           <dateIssued encoding="w3cdtf">2013-05-27</dateIssued>

@@ -11,9 +11,23 @@ class DCTests(unittest.TestCase):
     """
     dc_json = FlaLD_DC(join(PATH, 'debug/test_data/DCdebugSmall.xml'))
 
-    #   def test_dc_SourceResourceCreator(self):
+    def test_dc_SourceResourceCreator(self):
+        expected = [[{'name': 'Alexander Hamilton'}],
+                    [{'name': 'Karl Cassell'}],
+                    [{'name': 'Lewis Carroll'}]]
+        results = []
+        for record in self.dc_json:
+            results.append(record['sourceResource']['creator'])
+        self.assertTrue(all(x in results for x in expected))
 
-    #   def test_dc_SourceResourceContributor(self):
+    def test_dc_SourceResourceContributor(self):
+        expected = [[{'name': 'Buckethead'}],
+                    [{'name': 'Primus'}],
+                    [{'name': 'Thee Oh Sees'}]]
+        results = []
+        for record in self.dc_json:
+            results.append(record['sourceResource']['contributor'])
+        self.assertTrue(all(x in results for x in expected))
 
     def test_dc_SourceResourceDate(self):
         expected = [{'begin': '1974', 'end': '1974'},
@@ -105,9 +119,23 @@ class QDCTests(unittest.TestCase):
     """
     qdc_json = FlaLD_QDC(join(PATH, 'debug/test_data/QDCdebugSmall.xml'))
 
-#   def test_qdc_SourceResourceCreator(self):
+    def test_qdc_SourceResourceCreator(self):
+        expected = [[{'name': 'Gilpin, Vincent'}],
+                    [{'name': 'Munroe, Jessie N.'}],
+                    [{'name': 'Thurston Moore'}]]
+        results = []
+        for record in self.qdc_json:
+            results.append(record['sourceResource']['creator'])
+        self.assertTrue(all(x in results for x in expected))
 
-#   def test_qdc_SourceResourceContributor(self):
+    def test_qdc_SourceResourceContributor(self):
+        expected = [[{'name': 'Buckethead'}],
+                    [{'name': 'Primus'}],
+                    [{'name': 'Thee Oh Sees'}]]
+        results = []
+        for record in self.qdc_json:
+            results.append(record['sourceResource']['contributor'])
+        self.assertTrue(all(x in results for x in expected))
 
     def test_qdc_SourceResourceDate(self):
         expected = [{'begin': '1933-09-03', 'end': '1933-09-03'},
@@ -128,7 +156,14 @@ class QDCTests(unittest.TestCase):
                 results.append(record['sourceResource']['description'])
         self.assertTrue(all(x in results for x in expected))
 
-#   def test_qdc_SourceResourceExtent(self):
+    def test_qdc_SourceResourceExtent(self):
+        expected = [['1 letter'],
+                    ['2 letters'],
+                    ['4 letters']]
+        results = []
+        for record in self.qdc_json:
+            results.append(record['sourceResource']['extent'])
+        self.assertTrue(all(x in results for x in expected))
 
     def test_qdc_SourceResourceIdentifier(self):
         expected = ['http://merrick.library.miami.edu/cdm/ref/collection/asm0447/id/31',
@@ -148,7 +183,14 @@ class QDCTests(unittest.TestCase):
             results.append(record['sourceResource']['language'])
         self.assertTrue(all(x in results for x in expected))
 
-#   def test_qdc_SourceResourcePublisher(self):
+    def test_qdc_SourceResourcePublisher(self):
+        expected = [['IDW'],
+                    ['Image Comics'],
+                    ['Arista Records']]
+        results = []
+        for record in self.qdc_json:
+            results.append(record['sourceResource']['publisher'])
+        self.assertTrue(all(x in results for x in expected))
 
     def test_qdc_SourceResourceRights(self):
         expected = [{'text': 'Rights 4A', '@id': 'http://rightsstatements.org/page/UND/1.0/'},
@@ -226,6 +268,8 @@ class MODSTests(unittest.TestCase):
 
 #    def test_mods_SourceResourceAlternative(self):
 
+#    def test_mods_SourceResourceCollection(self):
+
 #    def test_mods_SourceResourceCreator(self):
 
 #    def test_mods_SourceResourceContributor(self):
@@ -300,23 +344,23 @@ class MODSTests(unittest.TestCase):
 #            results.append(record['sourceResource']['spatial'])
 #        self.assertTrue(all(x in results for x in expected))
 
-#    def test_mods_SourceResourceTitle(self):
-#        expected = ['Vincent Gilpin letter to Patty Munroe, September 3, 1933',
-#                    'Jessie N. Munroe letter to Mrs. Gilpin, January 16, 1912',
-#                    'Jessie N. Munroe letter to Mrs. Gilpin, April 26, 1915']
-#        results = []
-#        for record in self.mods_json:
-#            results.append(record['sourceResource']['title'][0])
-#        self.assertTrue(all(x in results for x in expected))
+    def test_mods_SourceResourceTitle(self):
+        expected = ['Fraternity fundraiser for injured student',
+                    'Student Life Contact Sheet',
+                    'Drew Shed: A Shed Alone']
+        results = []
+        for record in self.mods_json:
+            results.append(record['sourceResource']['title'])
+        print(results)
+        self.assertTrue(all(x in results for x in expected))
 
-#    def test_mods_SourceResourceType(self):
-#        expected = ['Text',
-#                    'Rebel Alliance Victory Plans',
-#                    'Tax return from a VIP']
-#        results = []
-#        for record in self.mods_json:
-#            results.append(record['sourceResource']['type'][0])
-#        self.assertTrue(all(x in results for x in expected))
+    def test_mods_SourceResourceType(self):
+        expected = ['still image',
+                    'moving image']
+        results = []
+        for record in self.mods_json:
+            results.append(record['sourceResource']['type'])
+        self.assertTrue(all(x in results for x in expected))
 
 #    def test_mods_AggregationDataProvider(self):
 
