@@ -471,14 +471,22 @@ def FlaLD_MODS(file_in):
                     sourceResource['contributor'] = []
                     for name in MODS.name_constructor(record):
 
-                        if all(key in name.keys() for key in ('roleText' or 'roleCode')):
-                            if name['roleText'] != 'Creator':
+                        if any(key in name.keys() for key in ['roleText', 'roleCode']) is False:
+                            if 'valueURI' in name.keys():
+                                sourceResource['contributor'].append({"@id": name['valueURI'],
+                                                                      "name": name['text']} )
+                            else:
+                                sourceResource['contributor'].append({"name": name['text']} )
+
+                        elif 'roleText' in name.keys():
+                            if name['roleText'].lower() != 'creator':
                                 if 'valueURI' in name.keys():
                                     sourceResource['contributor'].append({ "@id": name['valueURI'],
                                                                        "name": name['text'] })
                                 else:
                                     sourceResource['contributor'].append({ "name": name['text'] })
-                            elif name['roleCode'] != 'cre':
+                        elif 'roleCode' in name.keys():
+                            if name['roleCode'].lower() != 'cre':
                                 if 'valueURI' in name.keys():
                                     sourceResource['contributor'].append({ "@id": name['valueURI'],
                                                                        "name": name['text'] })
@@ -486,11 +494,7 @@ def FlaLD_MODS(file_in):
                                     sourceResource['contributor'].append({ "name": name['text'] })
 
                         else:
-                            if 'valueURI' in name.keys():
-                                sourceResource['contributor'].append({"@id": name['valueURI'],
-                                                                      "name": name['text']} )
-                            else:
-                                sourceResource['contributor'].append({"name": name['text']} )
+                            pass
 
                     if len(sourceResource['contributor']) < 1:
                         del sourceResource['contributor']
@@ -516,14 +520,16 @@ def FlaLD_MODS(file_in):
                 sourceResource['creator'] = []
                 for name in MODS.name_constructor(record):
 
-                    if all(key in name.keys() for key in ('roleText' or 'roleCode')):
-                        if name['roleText'] == 'Creator':
+                    #if all(key in name.keys() for key in ['roleText' or 'roleCode']):
+                    if 'roleText' in name.keys():
+                        if name['roleText'].lower() == 'creator':
                             if 'valueURI' in name.keys():
                                 sourceResource['creator'].append({ "@id": name['valueURI'],
                                                                    "name": name['text'] })
                             else:
                                 sourceResource['creator'].append({ "name": name['text'] })
-                        elif name['roleCode'] == 'cre':
+                    elif 'roleCode' in name.keys():
+                        if name['roleCode'].lower() == 'cre':
                             if 'valueURI' in name.keys():
                                 sourceResource['creator'].append({ "@id": name['valueURI'],
                                                                    "name": name['text'] })
@@ -653,7 +659,7 @@ def FlaLD_MODS(file_in):
                         long = place_json['http://www.w3.org/2003/01/geo/wgs84_pos#long']['@value']
                         sourceResource['spatial'].append({ "lat": lat,
                                                            "long": long,
-                                                           "_:attribution": "This record contains information from Thesaurus of Geographic Names (TGN)® which is made available under the ODC Attribution License." })
+                                                           "_:attribution": "This record contains information from Thesaurus of Geographic Names (TGN) which is made available under the ODC Attribution License." })
 
             #except KeyError as err: #debug
             #    with open('errorDump.txt', 'a') as dumpFile:
@@ -700,12 +706,16 @@ def FlaLD_MODS(file_in):
                 if MODS.subject(record) is not None:
                     sourceResource['subject'] = []
                     for subject in MODS.subject(record):
+                        non_alpha_char = re.compile("^[^a-zA-Z]+$")
+                        if non_alpha_char.match(subject['text']) is None:
 
-                        if 'valueURI' in subject.keys():
-                            sourceResource['subject'].append({"@id": subject['valueURI'],
-                                                              "name": subject['text'] })
+                            if 'valueURI' in subject.keys():
+                                sourceResource['subject'].append({"@id": subject['valueURI'],
+                                                                  "name": subject['text'] })
+                            else:
+                                sourceResource['subject'].append({"name": subject['text'] })
                         else:
-                            sourceResource['subject'].append({"name": subject['text'] })
+                            pass
 
             except TypeError as err: #debug
                 with open('errorDump.txt', 'a') as dumpFile:

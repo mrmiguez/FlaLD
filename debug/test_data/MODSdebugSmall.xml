@@ -69,12 +69,19 @@
         <titleInfo>
           <title>Student Life Contact Sheet</title>
         </titleInfo>
+        <titleInfo type='alternative'>
+            <title>Test 06</title>
+        </titleInfo>
         <identifier type="digitool">107201</identifier>
         <name>
           <namePart>Mittan, J. Barry</namePart>
           <role>
             <roleTerm authority="marcrelator" type="text">creator</roleTerm>
           </role>
+        </name>
+        <name>
+            <namePart type='given'>Matthew Roland</namePart>
+            <namePart type='family'>Miguez</namePart>
         </name>
         <typeOfResource>moving image</typeOfResource>
         <originInfo>
@@ -121,6 +128,14 @@
             <flvc:objectHistory source="digitool">admin_unit="FSU01", ingest_id="ing2981", creator="creator:FSUEDDIE", creation_date="2008-10-29 19:08:24", modified_by="creator:FSUEDDIE", modification_date="2011-08-16 07:56:33"</flvc:objectHistory>
           </flvc:flvc>
         </extension>
+        <relatedItem type="host">
+          <titleInfo>
+            <title>Test 05</title>
+          </titleInfo>
+          <location>
+            <url displayLabel="Finding Aid">Test 04</url>
+          </location>
+        </relatedItem>
       </mods:mods>
     </repox:metadata>
   </repox:record>
@@ -164,6 +179,9 @@
           <geographicCode>7007522</geographicCode>
         </subject>
         <relatedItem type="host">
+          <titleInfo>
+            <title>Davis Houck Papers, 1955 - 2006</title>
+          </titleInfo>
           <location>
             <url displayLabel="Finding Aid">http://purl.fcla.edu/fsu/MSS_2015-007</url>
           </location>

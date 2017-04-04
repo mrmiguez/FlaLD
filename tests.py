@@ -266,13 +266,39 @@ class MODSTests(unittest.TestCase):
     """
     mods_json = FlaLD_MODS(join(PATH, 'debug/test_data/MODSdebugSmall.xml'))
 
-#    def test_mods_SourceResourceAlternative(self):
+    def test_mods_SourceResourceAlternative(self):
+        expected = [['Test 06']]
+        results = []
+        for record in self.mods_json:
+            if 'alternative' in record['sourceResource'].keys():
+                results.append(record['sourceResource']['alternative'])
+        self.assertTrue(all(x in results for x in expected))
 
-#    def test_mods_SourceResourceCollection(self):
+    def test_mods_SourceResourceCollection(self):
+        expected = [{'_:id': 'http://purl.fcla.edu/fsu/MSS_2015-007', 'name': 'Davis Houck Papers, 1955 - 2006'},
+                    {'_:id': 'Test 04', 'name': 'Test 05'}]
+        results = []
+        for record in self.mods_json:
+            if 'collection' in record['sourceResource'].keys():
+                results.append(record['sourceResource']['collection'])
+        self.assertTrue(all(x in results for x in expected))
 
-#    def test_mods_SourceResourceCreator(self):
+    def test_mods_SourceResourceCreator(self):
+        expected = [[{'name': 'Mauldin, Bob'}], [{'name': 'Mittan, J. Barry'}]]
+        results = []
+        for record in self.mods_json:
+            if 'creator' in record['sourceResource'].keys():
+                results.append(record['sourceResource']['creator'])
+        self.assertTrue(all(x in results for x in expected))
 
-#    def test_mods_SourceResourceContributor(self):
+    def test_mods_SourceResourceContributor(self):
+        expected = [[{'name': 'Miguez, Matthew Roland'}],
+                    [{'name': 'Houck, Davis W.', '@id': 'http://id.loc.gov/authorities/names/n91016636'}]]
+        results = []
+        for record in self.mods_json:
+            if 'contributor' in record['sourceResource'].keys():
+                results.append(record['sourceResource']['contributor'])
+        self.assertTrue(all(x in results for x in expected))
 
     def test_mods_SourceResourceDate(self):
         expected = [{'begin': '2013-05-27', 'end': '2013-05-27', 'displayDate': '2013-05-27'},
@@ -293,9 +319,21 @@ class MODSTests(unittest.TestCase):
                 results.append(record['sourceResource']['description'])
         self.assertTrue(all(x in results for x in expected))
 
-#    def test_mods_SourceResourceExtent(self):
+    def test_mods_SourceResourceExtent(self):
+        expected = ['3 MB', '8 x 10 in.']
+        results = []
+        for record in self.mods_json:
+            if 'extent' in record['sourceResource'].keys():
+                results.append(record['sourceResource']['extent'])
+        self.assertTrue(all(x in results for x in expected))
 
-#    def test_mods_SourceResourceGenre(self):
+    def test_mods_SourceResourceGenre(self):
+        expected = [{"name": "Photographs"}, {"name": "Photographic prints", "@id": "http://id.loc.gov/vocabulary/graphicMaterials/tgm007718"}]
+        results = []
+        for record in self.mods_json:
+            if 'genre' in record['sourceResource'].keys():
+                results.append(record['sourceResource']['genre'])
+        self.assertTrue(all(x in results for x in expected))
 
     def test_mods_SourceResourceIdentifier(self):
         expected = [{'text': 'FSU_MSS_2015-007_S03_SS02_I003', '@id': 'http://purl.flvc.org/fsu/fd/FSU_MSS_2015-007_S03_SS02_I003'},
@@ -314,7 +352,13 @@ class MODSTests(unittest.TestCase):
                 results.append(record['sourceResource']['language'])
         self.assertTrue(all(x in results for x in expected))
 
-#    def test_mods_SourceResourcePublisher(self):
+    def test_mods_SourceResourcePublisher(self):
+        expected = ['Heritage Protocol, Florida State University, Tallahassee, Florida.']
+        results = []
+        for record in self.mods_json:
+            if 'publisher' in record['sourceResource'].keys():
+                results.append(record['sourceResource']['publisher'])
+        self.assertTrue(all(x in results for x in expected))
 
     def test_mods_SourceResourceRights(self):
         expected = ['Rights 4A',
@@ -325,23 +369,41 @@ class MODSTests(unittest.TestCase):
             results.append(record['sourceResource']['rights'])
         self.assertTrue(all(x in results for x in expected))
 
-#    def test_mods_SourceResourceSubject(self):
-#        expected = [[{"name": "Gilpin, Vincent"}, {"name": "Munroe, Patty"}, {"name": "Munroe, Ralph, 1851-1933"}, {"name": "Letters"}],
-#                    [{"name": "Letters"}],
-#                    [{"name": "Munroe, Patty"}, {"name": "Letters"}]]
-#        results = []
-#        for record in self.mods_json:
-#            results.append(record['sourceResource']['subject'])
-#        self.assertTrue(all(x in results for x in expected))
+    def test_mods_SourceResourceSubject(self):
+        expected = [[{"name": "Students"}, {"name": "Greek life"}, {"name": "Fraternities and Sororities"}],
+                    [{"name": "Florida State University"}, {"name": "Photography"},
+                     {"name": "Mittan, J. Barry"}, {"name": "Karate"},
+                     {"name": "Student Life"}, {"name": "Journalism"},
+                     {"name": "circa 1960s"}, {"name": "Campus Scenes"}],
+                    [{"@id": "http://id.loc.gov/authorities/subjects/sh2007100199",
+                      "name": "African Americans--Civil rights--History--20th century"},
+                     {"@id": "http://id.loc.gov/authorities/subjects/sh85001942",
+                      "name": "African Americans--Crimes against"},
+                     {"@id": "http://id.loc.gov/authorities/subjects/sh85026371",
+                      "name": "Civil rights"},
+                     {"@id": "http://id.loc.gov/authorities/subjects/sh2008106179",
+                      "name": "Journalism--Political aspects--United States"},
+                     {"@id": "http://id.loc.gov/authorities/subjects/sh2008115909",
+                      "name": "Mississippi--Race relations"},
+                     {"@id": "http://id.loc.gov/authorities/subjects/sh90002616",
+                      "name": "Racism in the press"},
+                     {"@id": "http://id.loc.gov/authorities/subjects/sh2008110371",
+                      "name": "Rhetoric--Political aspects--United States--History--20th century"},
+                     {"@id": "http://id.loc.gov/authorities/subjects/sh2010117082",
+                      "name": "Trials (Murder)--United States"}]]
+        results = []
+        for record in self.mods_json:
+            results.append(record['sourceResource']['subject'])
+        self.assertTrue(all(x in results for x in expected))
 
-#    def test_mods_SourceResourceSpatial(self):
-#        expected = [['Coconut Grove (Miami, Fla.)'],
-#                    ['Death Star'],
-#                    ['Excelsior (Minn.)']]
-#        results = []
-#        for record in self.mods_json:
-#            results.append(record['sourceResource']['spatial'])
-#        self.assertTrue(all(x in results for x in expected))
+    def test_mods_SourceResourceSpatial(self):
+        expected = [[{"lat": "32.712", "long": "-89.653",
+                      "_:attribution": "This record contains information from Thesaurus of Geographic Names (TGN) which is made available under the ODC Attribution License."}]]
+        results = []
+        for record in self.mods_json:
+            if 'spatial' in record['sourceResource'].keys():
+                results.append(record['sourceResource']['spatial'])
+        self.assertTrue(all(x in results for x in expected))
 
     def test_mods_SourceResourceTitle(self):
         expected = ['Fraternity fundraiser for injured student',
