@@ -42,7 +42,7 @@
           <extent>8 x 10 in.</extent>
           <digitalOrigin>reformatted digital</digitalOrigin>
         </physicalDescription>
-        <abstract displayLabel="Summary">Photograph of a fundraiser for Don Anderson, an injured student.  The person wearing a formal suit is identified as Florida State University Vice President Dr. A. B. Martin who is making a donation to aid with the medical expenses of the student. The signs on the photographs read "Don's Wishing Well" and "Will your wish come true? Wishing well."</abstract>
+        <abstract displayLabel="Summary">Test 00</abstract>
         <subject>
           <topic>Students</topic>
         </subject>
@@ -52,7 +52,7 @@
         <subject>
           <topic>Fraternities and Sororities</topic>
         </subject>
-        <accessCondition type="useAndReproduction">Use of this item is provided for non-commercial, personal, educational, and research use only. For information about the copyright and reproduction rights for this item, please contact Special Collections and Archives, Florida State University Libraries, Tallahassee, Florida.</accessCondition>
+        <accessCondition type="useAndReproduction">Rights 4A</accessCondition>
         <recordInfo>
           <recordChangeDate>2015-10-26</recordChangeDate>
         </recordInfo>
@@ -81,8 +81,8 @@
           <publisher>Heritage Protocol, Florida State University, Tallahassee, Florida.</publisher>
           <dateIssued keyDate="yes">circa 1965-1971</dateIssued>
         </originInfo>
-        <note>Photographs from Florida State University student, J. Barry Mittan, class of 1971 (BS, Psychology). While a student he was a photographer for numerous FSU publications, as well as the Athletic Department and the FSU Flying High Circus. These photographs are from his student photographer portfolio and are a part of the J. Barry Mittan Photograph Collection, 1965-1971 (HP-2008-020).</note>
-        <note>Labeled CS 104. B/W; aprox. 8x10 (Accession No. HP-2008-020).</note>
+        <note>Test 01</note>
+        <note>Test 02</note>
         <subject>
           <topic>Florida State University</topic>
         </subject>
@@ -110,8 +110,8 @@
         <location displayLabel="purl">
           <url>http://purl.flvc.org/fcla/dt/107201</url>
         </location>
-        <accessCondition>This image is the property of Florida State University. Its use is governed by U.S. and international copyright laws. To obtain a high-resolution copy of this image for a fee, please contact Florida State University Heritage Protocol.</accessCondition>
-        <accessCondition type="restriction on access">This collection is open to all researchers.</accessCondition>
+        <accessCondition>Rights AB</accessCondition>
+        <accessCondition type="restriction on access">Rights AC</accessCondition>
         <identifier type="IID">FSDT107201</identifier>
         <identifier type="fedora">fsu:9420</identifier>
         <extension>
@@ -159,7 +159,7 @@
           <extent>3 MB</extent>
           <digitalOrigin>reformatted digital</digitalOrigin>
         </physicalDescription>
-        <abstract displayLabel="Summary">Photograph of the Drew Shed.</abstract>
+        <abstract displayLabel="Summary">Test 03</abstract>
         <subject authority="tgn">
           <geographicCode>7007522</geographicCode>
         </subject>
