@@ -1,5 +1,6 @@
 import re
 import json
+import logging
 import requests
 from lxml import etree
 from bs4 import BeautifulSoup
@@ -206,6 +207,7 @@ def FlaLD_QDC(file_in):
                     else:
                         sourceResource['rights'] = OAI_QDC.simple_lookup(record, './/{0}rights'.format(nameSpace_default['dc']))
                 else:
+                    logging.warning('No sourceResource.rights - {0}'.format('ID of some sort'))
                     continue
                     
                 # sourceResource.subject
@@ -221,6 +223,7 @@ def FlaLD_QDC(file_in):
                 if title is not None:
                     sourceResource['title'] = title
                 else:
+                    logging.warning('No sourceResource.title - {0}'.format('ID of some sort'))
                     continue
 
                 # sourceResource.type
@@ -343,10 +346,7 @@ def FlaLD_DC(file_in):
                             else:
                                 sourceResource['identifier'].append(ID)
                         except TypeError as err:
-                            with open('errorDump.txt', 'a') as dumpFile:
-                                dumpFile.write('TypeError - sourceResource.identifier: {0}, {1}\n'.format(ID, err))
-                                #dumpFile.write('{0}\n'.format(name))
-                                dumpFile.write(etree.tostring(record).decode('utf-8'))
+                            logging.warning('sourceResource.identifier: {0}, {1}\n'.format(ID, err))
                             pass
                 else:
                     sourceResource['identifier'] = identifier
@@ -382,6 +382,7 @@ def FlaLD_DC(file_in):
                 if rights is not None:
                     sourceResource['rights'] = rights
                 else:
+                    logging.warning('No sourceResource.rights - {0}'.format('ID of some sort'))
                     continue
 
                 # sourceResource.subject
@@ -389,7 +390,7 @@ def FlaLD_DC(file_in):
                     sourceResource['subject'] = []
                     for element in OAI_QDC.split_lookup(record, './/{0}subject'.format(nameSpace_default['dc'])):
                         for term in element:
-                            term = re.sub("\( lcsh \)$", '', term) #term.rstrip(["( lcsh )"])
+                            term = re.sub("\( lcsh \)$", '', term)
                             if len(term) > 0:
                                 sourceResource['subject'].append({"name": term.strip(" ") })
 
@@ -398,7 +399,8 @@ def FlaLD_DC(file_in):
                 if title is not None:
                     sourceResource['title'] = title
                 else:
-                    continue #TODO logging for continue and try statements
+                    logging.warning('No sourceResource.rights - {0}'.format('ID of some sort'))
+                    continue
 
                 # sourceResource.type
                 if OAI_QDC.simple_lookup(record, './/{0}type'.format(nameSpace_default['dc'])) is not None:
@@ -429,10 +431,7 @@ def FlaLD_DC(file_in):
                                  #"preview": preview, #need details on a thumbnail service
                                  "provider": provider})
                 except NameError as err:
-                    with open('errorDump.txt', 'a') as dumpFile:
-                        dumpFile.write('NameError - aggregation.preview: {0}\n'.format(err))
-                        # dumpFile.write('{0}\n'.format(name))
-                        dumpFile.write(etree.tostring(record).decode('utf-8'))
+                    logging.warning('aggregation.preview: {0}\n'.format(err))
                     pass
 
     return docs
@@ -443,7 +442,7 @@ def FlaLD_MODS(file_in):
         records = MODSReader(data_in)
         docs = []
         for record in records:
-            #print(FSUDL.pid_search(record)) #test
+
             sourceResource = {}
 
             # sourceResource.alternative
@@ -465,7 +464,7 @@ def FlaLD_MODS(file_in):
                     sourceResource['collection']['_:id'] = collection['url']
 
             # sourceResource.contributor
-            try: #debug
+            try:
 
                 if record.name_constructor() is not None:
                     sourceResource['contributor'] = []
@@ -499,28 +498,14 @@ def FlaLD_MODS(file_in):
                     if len(sourceResource['contributor']) < 1:
                         del sourceResource['contributor']
 
-            except KeyError as err: #debug
-                with open('errorDump.txt', 'a') as dumpFile:
-                    dumpFile.write('AttributeError - sourceResource.contributor: {0}, {1}\n'.format(record.pid_search(), err))
-                    dumpFile.write('{0}\n'.format(name))
-                    #dumpFile.write(etree.tostring(record).decode('utf-8'))
+            except KeyError as err:
+                logging.warning('sourceResource.contributor: {0}, {1}\n'.format(err, record.pid_search()))
                 pass
-
-            #except AttributeError as err: #debug
-            #    with open('errorDump.txt', 'a') as dumpFile:
-            #        dumpFile.write('AttributeError - sourceResource.contributor: {0}, {1}\n'.format(FSUDL.pid_search(record), err))
-            #        dumpFile.write('{0}\n'.format(name))
-            #        dumpFile.write(etree.tostring(record).decode('utf-8'))
-            #    pass
-
-            # sourceResource.creator
-            #try:  # debug
 
             if record.name_constructor() is not None:
                 sourceResource['creator'] = []
                 for name in record.name_constructor():
 
-                    #if all(key in name.keys() for key in ['roleText' or 'roleCode']):
                     if 'roleText' in name.keys():
                         if name['roleText'].lower() == 'creator':
                             if 'valueURI' in name.keys():
@@ -537,13 +522,6 @@ def FlaLD_MODS(file_in):
                                 sourceResource['creator'].append({ "name": name['text'] })
                     else:
                         pass
-
-            #except AttributeError as err: # debug
-            #    with open('errorDump.txt', 'a') as dumpFile:
-            #        dumpFile.write('AttributeError - sourceResource.creator: {0}, {1}\n'.format(FSUDL.pid_search(record), err))
-            #        dumpFile.write('{0}\n'.format(name))
-            #        dumpFile.write(etree.tostring(record).decode('utf-8'))
-            #    pass
 
             # sourceResource.date
             if record.date_constructor() is not None:
@@ -610,8 +588,6 @@ def FlaLD_MODS(file_in):
                                              "text": record.local_identifier() }
 
             # sourceResource.language
-            #try: #debug
-
             if record.language() is not None:
                 language_list = []
                 for language in record.language():
@@ -626,16 +602,7 @@ def FlaLD_MODS(file_in):
                     language_list.append(language_dict)
                 sourceResource['language'] = language_list
 
-            #except KeyError as err: #debug
-            #    with open('errorDump.txt', 'a') as dumpFile:
-            #        dumpFile.write('KeyError - sourceResource.language: {0}, {1}\n'.format(FSUDL.pid_search(record), err))
-            #        dumpFile.write('{0}\n'.format(language))
-            #        dumpFile.write(etree.tostring(record).decode('utf-8'))
-            #    pass
-
-            # sourceResource.sourceResource.place : sourceResource['spatial']
-            #try:
-
+            # sourceResource.place : sourceResource['spatial']
             geo_code_list = record.geographic_code()
             if geo_code_list is not None:
                 sourceResource['spatial'] = []
@@ -661,12 +628,6 @@ def FlaLD_MODS(file_in):
                                                            "long": long,
                                                            "_:attribution": "This record contains information from Thesaurus of Geographic Names (TGN) which is made available under the ODC Attribution License." })
 
-            #except KeyError as err: #debug
-            #    with open('errorDump.txt', 'a') as dumpFile:
-            #        dumpFile.write('KeyError - sourceResource.sourceResource.place: {0}, {1}\n'.format(FSUDL.pid_search(record), err))
-            #        dumpFile.write(etree.tostring(record).decode('utf-8'))
-            #    pass
-
             # sourceResource.publisher
             if record.publisher() is not None:
                 if len(record.publisher()) > 1:
@@ -683,8 +644,6 @@ def FlaLD_MODS(file_in):
             # sourceResource.replaces
 
             # sourceResource.rights
-            #try:
-
             if record.rights() is not None:
                 if len(record.rights()) > 1:
                     sourceResource['rights'] = {"@id": record.rights()['URI'],
@@ -692,16 +651,11 @@ def FlaLD_MODS(file_in):
                 else:
                     sourceResource['rights'] = record.rights()['text']
             else:
+                logging.warning('No sourceResource.rights - {0}'.format(record.pid_search()))
                 continue
 
-            #except TypeError as err: #debug
-            #    with open('errorDump.txt', 'a') as dumpFile:
-            #        dumpFile.write('TypeError - sourceResource.rights: {0}, {1}\n'.format(FSUDL.pid_search(record), err))
-            #        dumpFile.write(etree.tostring(record).decode('utf-8'))
-            #    pass
-
             # sourceResource.subject
-            try: #debug
+            try:
 
                 if record.subject() is not None:
                     sourceResource['subject'] = []
@@ -717,24 +671,16 @@ def FlaLD_MODS(file_in):
                         else:
                             pass
 
-            except TypeError as err: #debug
-                with open('errorDump.txt', 'a') as dumpFile:
-                    dumpFile.write('KeyError - sourceResource.subject: {0}, {1}\n'.format(record.pid_search(), err))
-                    dumpFile.write(etree.tostring(record).decode('utf-8'))
+            except TypeError as err:
+                logging.warning('sourceResource.subject: {0}, {1}\n'.format(err, record.pid_search()))
                 pass
 
             # sourceResource.title
-            #try: # debug
             if record.title_constructor() is not None:
                 sourceResource['title'] = record.title_constructor()[0]
             else:
+                logging.warning('No sourceResource.title: {0}'.format(record.pid_search()))
                 continue
-
-            #except IndexError: # debug
-            #    with open('errorDump.txt', 'a') as dumpFile:
-            #        dumpFile.write('IndexError - sourceResource.title: {0}, {1}\n'.format(FSUDL.pid_search(record), err))
-            #        dumpFile.write(etree.tostring(record).decode('utf-8'))
-            #    pass
 
             # sourceResource.type
             sourceResource['type'] = record.type_of_resource()
