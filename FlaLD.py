@@ -3,7 +3,7 @@ import json
 import requests
 from lxml import etree
 from bs4 import BeautifulSoup
-from pymods import MODS, FSUDL
+from pymods import MODSReader
 
 nameSpace_default = { None: '{http://www.loc.gov/mods/v3}',
                       'oai_dc': '{http://www.openarchives.org/OAI/2.0/oai_dc/}',
@@ -440,22 +440,22 @@ def FlaLD_DC(file_in):
 
 def FlaLD_MODS(file_in):
     with open(file_in, encoding='utf-8') as data_in:
-        records = MODS(data_in)
+        records = MODSReader(data_in)
         docs = []
-        for record in records.record_list:
+        for record in records:
             #print(FSUDL.pid_search(record)) #test
             sourceResource = {}
 
             # sourceResource.alternative
-            if MODS.title_constructor(record) is not None and MODS.title_constructor(record)[1:] is not None:
+            if record.title_constructor() is not None and record.title_constructor()[1:] is not None:
                 sourceResource['alternative'] = []
-                if len(MODS.title_constructor(record)[1:]) >= 1:
-                    for alternative_title in MODS.title_constructor(record)[1:]:
+                if len(record.title_constructor()[1:]) >= 1:
+                    for alternative_title in record.title_constructor()[1:]:
                         sourceResource['alternative'].append(alternative_title)
 
             # sourceResource.collection
-            if MODS.collection(record) is not None:
-                collection = MODS.collection(record)
+            if record.collection() is not None:
+                collection = record.collection()
                 sourceResource['collection'] = {}
                 if 'title' in collection.keys():
                     sourceResource['collection']['name'] = collection['title']
@@ -467,9 +467,9 @@ def FlaLD_MODS(file_in):
             # sourceResource.contributor
             try: #debug
 
-                if MODS.name_constructor(record) is not None:
+                if record.name_constructor() is not None:
                     sourceResource['contributor'] = []
-                    for name in MODS.name_constructor(record):
+                    for name in record.name_constructor():
 
                         if any(key in name.keys() for key in ['roleText', 'roleCode']) is False:
                             if 'valueURI' in name.keys():
@@ -501,7 +501,7 @@ def FlaLD_MODS(file_in):
 
             except KeyError as err: #debug
                 with open('errorDump.txt', 'a') as dumpFile:
-                    dumpFile.write('AttributeError - sourceResource.contributor: {0}, {1}\n'.format(FSUDL.pid_search(record), err))
+                    dumpFile.write('AttributeError - sourceResource.contributor: {0}, {1}\n'.format(record.pid_search(), err))
                     dumpFile.write('{0}\n'.format(name))
                     #dumpFile.write(etree.tostring(record).decode('utf-8'))
                 pass
@@ -516,9 +516,9 @@ def FlaLD_MODS(file_in):
             # sourceResource.creator
             #try:  # debug
 
-            if MODS.name_constructor(record) is not None:
+            if record.name_constructor() is not None:
                 sourceResource['creator'] = []
-                for name in MODS.name_constructor(record):
+                for name in record.name_constructor():
 
                     #if all(key in name.keys() for key in ['roleText' or 'roleCode']):
                     if 'roleText' in name.keys():
@@ -546,8 +546,8 @@ def FlaLD_MODS(file_in):
             #    pass
 
             # sourceResource.date
-            if MODS.date_constructor(record) is not None:
-                date = MODS.date_constructor(record)
+            if record.date_constructor() is not None:
+                date = record.date_constructor()
                 if ' - ' in date:
                     sourceResource['date'] = { "displayDate": date,
                                                "begin": date[0:4],
@@ -558,37 +558,37 @@ def FlaLD_MODS(file_in):
                                                "end": date }
 
             # sourceResource.description
-            if MODS.abstract(record) is not None:
-                if len(MODS.abstract(record)) > 1:
+            if record.abstract() is not None:
+                if len(record.abstract()) > 1:
                     sourceResource['description'] = []
-                    for description in MODS.abstract(record):
+                    for description in record.abstract():
                         sourceResource['description'].append(description)
                 else:
-                    sourceResource['description'] = MODS.abstract(record)
+                    sourceResource['description'] = record.abstract()
 
             # sourceResource.extent
-            if MODS.extent(record) is not None:
-                if len(MODS.extent(record)) > 1:
+            if record.extent() is not None:
+                if len(record.extent()) > 1:
                     sourceResource['extent'] = []
-                    for extent in MODS.extent(record):
+                    for extent in record.extent():
                         sourceResource['extent'].append(extent)
                 else:
-                    sourceResource['extent'] = MODS.extent(record)[0]
+                    sourceResource['extent'] = record.extent()[0]
 
             # sourceResource.format
-            if MODS.form(record) is not None:
-                if len(MODS.form(record)) > 1:
+            if record.form() is not None:
+                if len(record.form()) > 1:
                     sourceResource['format'] = []
-                    for form in MODS.form(record):
+                    for form in record.form():
                         sourceResource['format'].append(form)
                 else:
-                    sourceResource['format'] = MODS.form(record)[0]
+                    sourceResource['format'] = record.form()[0]
 
             # sourceResource.genre
-            if MODS.genre(record) is not None:
-                if len(MODS.genre(record)) > 1:
+            if record.genre() is not None:
+                if len(record.genre()) > 1:
                     sourceResource['genre'] = []
-                    for genre in MODS.genre(record):
+                    for genre in record.genre():
                         genre_elem = {}
                         for key, value in genre.items():
                             if 'term' == key:
@@ -598,7 +598,7 @@ def FlaLD_MODS(file_in):
                         sourceResource['genre'].append(genre_elem)
                 else:
                     genre_elem = {}
-                    for key, value in MODS.genre(record)[0].items():
+                    for key, value in record.genre()[0].items():
                         if 'term' == key:
                             genre_elem['name'] = value
                         elif 'valueURI' == key:
@@ -606,15 +606,15 @@ def FlaLD_MODS(file_in):
                     sourceResource['genre'] = genre_elem
 
             # sourceResource.identifier
-            sourceResource['identifier'] = { "@id": FSUDL.purl_search(record),
-                                             "text": FSUDL.local_identifier(record) }
+            sourceResource['identifier'] = { "@id": record.purl_search(),
+                                             "text": record.local_identifier() }
 
             # sourceResource.language
             #try: #debug
 
-            if MODS.language(record) is not None:
+            if record.language() is not None:
                 language_list = []
-                for language in MODS.language(record):
+                for language in record.language():
                     if len(language) > 1:
                         language_dict = { "name": language['text'],
                                           "iso_639_3": language['code'] }
@@ -636,7 +636,7 @@ def FlaLD_MODS(file_in):
             # sourceResource.sourceResource.place : sourceResource['spatial']
             #try:
 
-            geo_code_list = MODS.geographic_code(record)
+            geo_code_list = record.geographic_code()
             if geo_code_list is not None:
                 sourceResource['spatial'] = []
                 for geo_code in geo_code_list:
@@ -668,13 +668,13 @@ def FlaLD_MODS(file_in):
             #    pass
 
             # sourceResource.publisher
-            if MODS.publisher(record) is not None:
-                if len(MODS.publisher(record)) > 1:
+            if record.publisher() is not None:
+                if len(record.publisher()) > 1:
                     sourceResource['publisher'] = []
-                    for publisher in MODS.publisher(record):
+                    for publisher in record.publisher():
                         sourceResource['publisher'].append(publisher)
                 else:
-                    sourceResource['publisher'] = MODS.publisher(record)[0]
+                    sourceResource['publisher'] = record.publisher()[0]
 
             # sourceResource.relation
 
@@ -685,12 +685,12 @@ def FlaLD_MODS(file_in):
             # sourceResource.rights
             #try:
 
-            if MODS.rights(record) is not None:
-                if len(MODS.rights(record)) > 1:
-                    sourceResource['rights'] = {"@id": MODS.rights(record)['URI'],
-                                                "text": MODS.rights(record)['text']}
+            if record.rights() is not None:
+                if len(record.rights()) > 1:
+                    sourceResource['rights'] = {"@id": record.rights()['URI'],
+                                                "text": record.rights()['text']}
                 else:
-                    sourceResource['rights'] = MODS.rights(record)['text']
+                    sourceResource['rights'] = record.rights()['text']
             else:
                 continue
 
@@ -703,9 +703,9 @@ def FlaLD_MODS(file_in):
             # sourceResource.subject
             try: #debug
 
-                if MODS.subject(record) is not None:
+                if record.subject() is not None:
                     sourceResource['subject'] = []
-                    for subject in MODS.subject(record):
+                    for subject in record.subject():
                         non_alpha_char = re.compile("^[^a-zA-Z]+$")
                         if non_alpha_char.match(subject['text']) is None:
 
@@ -719,14 +719,14 @@ def FlaLD_MODS(file_in):
 
             except TypeError as err: #debug
                 with open('errorDump.txt', 'a') as dumpFile:
-                    dumpFile.write('KeyError - sourceResource.subject: {0}, {1}\n'.format(FSUDL.pid_search(record), err))
+                    dumpFile.write('KeyError - sourceResource.subject: {0}, {1}\n'.format(record.pid_search(), err))
                     dumpFile.write(etree.tostring(record).decode('utf-8'))
                 pass
 
             # sourceResource.title
             #try: # debug
-            if MODS.title_constructor(record) is not None:
-                sourceResource['title'] = MODS.title_constructor(record)[0]
+            if record.title_constructor() is not None:
+                sourceResource['title'] = record.title_constructor()[0]
             else:
                 continue
 
@@ -737,7 +737,7 @@ def FlaLD_MODS(file_in):
             #    pass
 
             # sourceResource.type
-            sourceResource['type'] = MODS.type_of_resource(record)
+            sourceResource['type'] = record.type_of_resource()
 
             # aggregation.dataProvider
             data_provider = "Florida State University Libraries"
@@ -745,7 +745,7 @@ def FlaLD_MODS(file_in):
             # aggregation.isShownAt
 
             # aggregation.preview
-            pid = FSUDL.pid_search(record)
+            pid = record.pid_search()
             preview = "http://fsu.digital.flvc.org/islandora/object/{0}/datastream/TN/view".format(pid)
 
             # aggregation.provider
@@ -756,7 +756,7 @@ def FlaLD_MODS(file_in):
                          "sourceResource": sourceResource,
                          "aggregatedCHO": "#sourceResource",
                          "dataProvider": data_provider,
-                         "isShownAt": FSUDL.purl_search(record),
+                         "isShownAt": record.purl_search(),
                          "preview": preview,
                          "provider": provider})
         return docs
