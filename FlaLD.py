@@ -90,6 +90,7 @@ def FlaLD_QDC(file_in):
                     pass
 
             else:
+                oai_id = record.attrib['id']
 
                 sourceResource = {}
 
@@ -207,7 +208,7 @@ def FlaLD_QDC(file_in):
                     else:
                         sourceResource['rights'] = OAI_QDC.simple_lookup(record, './/{0}rights'.format(nameSpace_default['dc']))
                 else:
-                    logging.warning('No sourceResource.rights - {0}'.format('ID of some sort'))
+                    logging.warning('No sourceResource.rights - {0}'.format(oai_id))
                     continue
                     
                 # sourceResource.subject
@@ -223,7 +224,7 @@ def FlaLD_QDC(file_in):
                 if title is not None:
                     sourceResource['title'] = title
                 else:
-                    logging.warning('No sourceResource.title - {0}'.format('ID of some sort'))
+                    logging.warning('No sourceResource.title - {0}'.format(oai_id))
                     continue
 
                 # sourceResource.type
@@ -275,6 +276,7 @@ def FlaLD_DC(file_in):
                     pass
 
             else:
+                oai_id = record.attrib['id']
 
                 sourceResource = {}
 
@@ -346,7 +348,7 @@ def FlaLD_DC(file_in):
                             else:
                                 sourceResource['identifier'].append(ID)
                         except TypeError as err:
-                            logging.warning('sourceResource.identifier: {0}, {1}\n'.format(ID, err))
+                            logging.warning('sourceResource.identifier: {0} - {1}\n'.format(err, oai_id))
                             pass
                 else:
                     sourceResource['identifier'] = identifier
@@ -382,7 +384,7 @@ def FlaLD_DC(file_in):
                 if rights is not None:
                     sourceResource['rights'] = rights
                 else:
-                    logging.warning('No sourceResource.rights - {0}'.format('ID of some sort'))
+                    logging.warning('No sourceResource.rights - {0}'.format(oai_id))
                     continue
 
                 # sourceResource.subject
@@ -399,7 +401,7 @@ def FlaLD_DC(file_in):
                 if title is not None:
                     sourceResource['title'] = title
                 else:
-                    logging.warning('No sourceResource.rights - {0}'.format('ID of some sort'))
+                    logging.warning('No sourceResource.rights - {0}'.format(oai_id))
                     continue
 
                 # sourceResource.type
@@ -431,7 +433,7 @@ def FlaLD_DC(file_in):
                                  #"preview": preview, #need details on a thumbnail service
                                  "provider": provider})
                 except NameError as err:
-                    logging.warning('aggregation.preview: {0}\n'.format(err))
+                    logging.warning('aggregation.preview: {0} - {1}\n'.format(err, oai_id))
                     pass
 
     return docs
