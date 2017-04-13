@@ -245,13 +245,10 @@ def FlaLD_QDC(file_in):
                 # aggregation.preview
                 for identifier in  local_id:
                     if 'http' in identifier:
-                        collectionID = identifier.split('/')[6]
-                        itemID = local_id[0].split('/')[8]
+                        collection_list = identifier.split('/')[-4:]
                         cdm_url_prefix = { 'um': 'http://merrick.library.miami.edu' }
-                        cdm_url_path = '/utils/getthumbnail/collection/{0}/id/{1}'.format(collectionID, itemID)
-
-                if "merrick.library.miami.edu" in local_id[0]:
-                    preview = cdm_url_prefix['um'] + cdm_url_path
+                        cdm_url_path = '/utils/getthumbnail/collection/{0}/id/{1}'.format(collection_list[1], collection_list[3])
+                        docs.append({"preview": cdm_url_prefix['um'] + cdm_url_path})
 
                 # aggregation.provider
                 provider = {"name": "TO BE DETERMINED",
@@ -262,7 +259,7 @@ def FlaLD_QDC(file_in):
                              "aggregatedCHO": "#sourceResource",
                              "dataProvider": data_provider,
                              "isShownAt": local_id[0],
-                             "preview": preview,
+                             #"preview": preview,
                              "provider": provider})
     return docs
 
