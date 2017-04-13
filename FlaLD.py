@@ -243,7 +243,7 @@ def FlaLD_QDC(file_in):
                 # aggregation.isShownAt
 
                 # aggregation.preview
-                if len(collectionID.split('/')) > 0:
+                if len(local_id.split('/')) > 0:
                     collectionID = local_id[0].split('/')[6]
                     itemID = local_id[0].split('/')[8]
                     cdm_url_prefix = { 'um': 'http://merrick.library.miami.edu' }
