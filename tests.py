@@ -9,7 +9,9 @@ class DCTests(unittest.TestCase):
     """
     
     """
-    dc_json = FlaLD_DC(join(PATH, 'debug/test_data/DCdebugSmall.xml'))
+    dc_json = FlaLD_DC(join(PATH, 'debug/test_data/DCdebugSmall.xml'),
+                       tn={'name': 'sobek', 'prefix': 'http://dpanther.fiu.edu/sobek/content'},
+                       dprovide='University of Miami-TEMP')
 
     def test_dc_SourceResourceCreator(self):
         expected = [[{'name': 'Alexander Hamilton'}],
@@ -115,7 +117,6 @@ class DCTests(unittest.TestCase):
         results = []
         for record in self.dc_json:
             results.append(record['preview'])
-        print(results)
         self.assertTrue(all(x in results for x in expected))
 
 #   def test_dc_AggregationProvider(self):
@@ -125,7 +126,9 @@ class QDCTests(unittest.TestCase):
     """
 
     """
-    qdc_json = FlaLD_QDC(join(PATH, 'debug/test_data/QDCdebugSmall.xml'))
+    qdc_json = FlaLD_QDC(join(PATH, 'debug/test_data/QDCdebugSmall.xml'),
+                         tn={'name':'cdm', 'prefix': 'http://merrick.library.miami.edu'},
+                         dprovide='University of Miami-TEMP')
 
     def test_qdc_SourceResourceCreator(self):
         expected = [[{'name': 'Gilpin, Vincent'}],
@@ -272,7 +275,9 @@ class MODSTests(unittest.TestCase):
     """
 
     """
-    mods_json = FlaLD_MODS(join(PATH, 'debug/test_data/MODSdebugSmall.xml'))
+    mods_json = FlaLD_MODS(join(PATH, 'debug/test_data/MODSdebugSmall.xml'),
+                           tn={'name': 'islandora', 'prefix': 'http://fsu.digital.flvc.org/islandora/object'},
+                           dprovide='Florida State University Libraries')
 
     def test_mods_SourceResourceAlternative(self):
         expected = [['Test 06']]

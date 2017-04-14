@@ -5,7 +5,10 @@ import requests
 from lxml import etree
 from bs4 import BeautifulSoup
 from pymods import MODSReader
+
+# custom functions and variables
 import assets
+from master_config import PROVIDER
 
 nameSpace_default = { None: '{http://www.loc.gov/mods/v3}',
                       'oai_dc': '{http://www.openarchives.org/OAI/2.0/oai_dc/}',
@@ -80,7 +83,7 @@ class OAI_QDC:
             return results
 
 
-def FlaLD_QDC(file_in):
+def FlaLD_QDC(file_in, tn, dprovide, iprovide=None):
     with open(file_in, encoding='utf-8') as data_in:
         records = OAI_QDC(data_in)
         docs = []
@@ -239,23 +242,19 @@ def FlaLD_QDC(file_in):
                 # webResource.fileFormat
 
                 # aggregation.dataProvider
-                data_provider = "temp"
+                data_provider = dprovide
+
+                # aggregation.intermediateProvider
 
                 # aggregation.isShownAt
 
                 # aggregation.preview
-                for identifier in  local_id:
-                    if 'merrick.library.miami.edu' in identifier:
+                for identifier in local_id:
+                    if 'http' in identifier:
                         is_shown_at = identifier
-                        collection_list = identifier.split('/')[-4:]
-                        cdm_url_prefix = { 'um': 'http://merrick.library.miami.edu' }
-                        cdm_url_path = '/utils/getthumbnail/collection/{0}/id/{1}'.format(collection_list[1],
-                                                                                          collection_list[3])
-                        preview = cdm_url_prefix['um'] + cdm_url_path
+                        preview = assets.thumbnail_service(identifier, tn)
 
                 # aggregation.provider
-                provider = {"name": "TO BE DETERMINED",
-                            "@id": "DPLA provides?"}
 
                 docs.append({"@context": "http://api.dp.la/items/context",
                              "sourceResource": sourceResource,
@@ -263,11 +262,11 @@ def FlaLD_QDC(file_in):
                              "dataProvider": data_provider,
                              "isShownAt": is_shown_at,
                              "preview": preview,
-                             "provider": provider})
+                             "provider": PROVIDER})
     return docs
 
 
-def FlaLD_DC(file_in):
+def FlaLD_DC(file_in, tn, dprovide, iprovide=None):
     with open(file_in, encoding='utf-8') as data_in:
         records = OAI_QDC(data_in)
         docs = []
@@ -417,25 +416,17 @@ def FlaLD_DC(file_in):
                 # webResource.fileFormat
 
                 # aggregation.dataProvider
-                data_provider = "temp"
+                data_provider = dprovide
+
+                # aggregation.intermediateProvider
 
                 # aggregation.isShownAt
 
                 # aggregation.preview
-                collection_list = PURL_match.split('/')[-2:]
-                sobek_url_prefix = "http://dpanther.fiu.edu/sobek/content"
-                sobek_url_path = "/{0}/{1}/{2}/{3}/{4}/{5}/{6}_001_thm.jpg".format(collection_list[0][0:2],
-                                                                                   collection_list[0][2:4],
-                                                                                   collection_list[0][4:6],
-                                                                                   collection_list[0][6:8],
-                                                                                   collection_list[0][8:10],
-                                                                                   collection_list[1],
-                                                                                   collection_list[0])
-                preview = sobek_url_prefix + sobek_url_path
+                preview = assets.thumbnail_service(PURL_match, tn)
 
                 # aggregation.provider
-                provider = {"name": "TO BE DETERMINED",
-                            "@id": "DPLA provides?"}
+
                 try:
                     docs.append({"@context": "http://api.dp.la/items/context",
                                  "sourceResource": sourceResource,
@@ -443,7 +434,7 @@ def FlaLD_DC(file_in):
                                  "dataProvider": data_provider,
                                  "isShownAt": PURL_match,
                                  "preview": preview,
-                                 "provider": provider})
+                                 "provider": PROVIDER})
                 except NameError as err:
                     logging.warning('aggregation.preview: {0} - {1}\n'.format(err, oai_id))
                     pass
@@ -451,7 +442,7 @@ def FlaLD_DC(file_in):
     return docs
 
 
-def FlaLD_MODS(file_in):
+def FlaLD_MODS(file_in, tn, dprovide, iprovide=None):
     with open(file_in, encoding='utf-8') as data_in:
         records = MODSReader(data_in)
         docs = []
@@ -700,17 +691,17 @@ def FlaLD_MODS(file_in):
             sourceResource['type'] = record.type_of_resource()
 
             # aggregation.dataProvider
-            data_provider = "Florida State University Libraries"
+            data_provider = dprovide
+
+            # aggregation.intermediateProvider #TODO
 
             # aggregation.isShownAt
 
             # aggregation.preview
             pid = record.pid_search()
-            preview = "http://fsu.digital.flvc.org/islandora/object/{0}/datastream/TN/view".format(pid)
+            preview = assets.thumbnail_service(pid, tn)
 
             # aggregation.provider
-            provider = {"name": "TO BE DETERMINED",
-                        "@id": "DPLA provides?"}
 
             docs.append({"@context": "http://api.dp.la/items/context",
                          "sourceResource": sourceResource,
@@ -718,5 +709,5 @@ def FlaLD_MODS(file_in):
                          "dataProvider": data_provider,
                          "isShownAt": record.purl_search(),
                          "preview": preview,
-                         "provider": provider})
+                         "provider": PROVIDER})
         return docs

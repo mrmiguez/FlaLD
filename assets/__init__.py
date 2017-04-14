@@ -1,0 +1,1 @@
+from .thumbnail import thumbnail_service
