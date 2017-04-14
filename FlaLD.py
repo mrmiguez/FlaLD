@@ -612,7 +612,13 @@ def FlaLD_MODS(file_in, tn, dprovide, iprovide=None):
             if geo_code_list is not None:
                 sourceResource['spatial'] = []
                 for geo_code in geo_code_list:
-                    tgn_prefix = 'http://vocab.getty.edu/tgn/'
+
+                    code, lat, long, label = assets.tgn_cache(geo_code)
+                    sourceResource['spatial'].append({"lat": lat,
+                                                      "long": long,
+                                                      "_:attribution": "This record contains information from Thesaurus of Geographic Names (TGN) which is made available under the ODC Attribution License." })
+
+                    #tgn_prefix = 'http://vocab.getty.edu/tgn/'
 
                     '''
                     # Implementation using the schema.org namespace
@@ -623,15 +629,15 @@ def FlaLD_MODS(file_in, tn, dprovide, iprovide=None):
                     # long = geometry_json['http://schema.org/longitude']['@value']
                     '''
 
-                    tgn_place = geo_code + '-place.jsonld'
-                    place = requests.get(tgn_prefix + tgn_place)
-                    if place.status_code == 200:
-                        place_json = json.loads(place.text)
-                        lat = place_json['http://www.w3.org/2003/01/geo/wgs84_pos#lat']['@value']
-                        long = place_json['http://www.w3.org/2003/01/geo/wgs84_pos#long']['@value']
-                        sourceResource['spatial'].append({ "lat": lat,
-                                                           "long": long,
-                                                           "_:attribution": "This record contains information from Thesaurus of Geographic Names (TGN) which is made available under the ODC Attribution License." })
+                    #tgn_place = geo_code + '-place.jsonld'
+                    #place = requests.get(tgn_prefix + tgn_place)
+                    #if place.status_code == 200:
+                    #    place_json = json.loads(place.text)
+                    #    lat = place_json['http://www.w3.org/2003/01/geo/wgs84_pos#lat']['@value']
+                    #    long = place_json['http://www.w3.org/2003/01/geo/wgs84_pos#long']['@value']
+                    #    sourceResource['spatial'].append({ "lat": lat,
+                    #                                       "long": long,
+                    #                                       "_:attribution": "This record contains information from Thesaurus of Geographic Names (TGN) which is made available under the ODC Attribution License." })
 
             # sourceResource.publisher
             if record.publisher() is not None:
