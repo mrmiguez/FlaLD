@@ -5,6 +5,7 @@ import requests
 from lxml import etree
 from bs4 import BeautifulSoup
 from pymods import MODSReader
+import assets
 
 nameSpace_default = { None: '{http://www.loc.gov/mods/v3}',
                       'oai_dc': '{http://www.openarchives.org/OAI/2.0/oai_dc/}',
@@ -421,6 +422,16 @@ def FlaLD_DC(file_in):
                 # aggregation.isShownAt
 
                 # aggregation.preview
+                collection_list = PURL_match.split('/')[-2:]
+                sobek_url_prefix = "http://dpanther.fiu.edu/sobek/content"
+                sobek_url_path = "/{0}/{1}/{2}/{3}/{4}/{5}/{6}_001_thm.jpg".format(collection_list[0][0:2],
+                                                                                   collection_list[0][2:4],
+                                                                                   collection_list[0][4:6],
+                                                                                   collection_list[0][6:8],
+                                                                                   collection_list[0][8:10],
+                                                                                   collection_list[1],
+                                                                                   collection_list[0])
+                preview = sobek_url_prefix + sobek_url_path
 
                 # aggregation.provider
                 provider = {"name": "TO BE DETERMINED",
@@ -431,7 +442,7 @@ def FlaLD_DC(file_in):
                                  "aggregatedCHO": "#sourceResource",
                                  "dataProvider": data_provider,
                                  "isShownAt": PURL_match,
-                                 #"preview": preview, #need details on a thumbnail service
+                                 "preview": preview,
                                  "provider": provider})
                 except NameError as err:
                     logging.warning('aggregation.preview: {0} - {1}\n'.format(err, oai_id))

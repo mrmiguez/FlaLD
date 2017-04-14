@@ -108,7 +108,15 @@ class DCTests(unittest.TestCase):
             results.append(record['isShownAt'])
         self.assertTrue(all(x in results for x in expected))
 
-#   def test_dc_AggregationPreview(self):
+    def test_dc_AggregationPreview(self):
+        expected = ['http://dpanther.fiu.edu/sobek/content/FI/07/05/08/32/00001/FI07050832_001_thm.jpg',
+                    'http://dpanther.fiu.edu/sobek/content/FI/07/05/08/42/00001/FI07050842_001_thm.jpg',
+                    'http://dpanther.fiu.edu/sobek/content/FI/07/04/04/07/00001/FI07040407_001_thm.jpg']
+        results = []
+        for record in self.dc_json:
+            results.append(record['preview'])
+        print(results)
+        self.assertTrue(all(x in results for x in expected))
 
 #   def test_dc_AggregationProvider(self):
 

@@ -14,7 +14,7 @@ CONFIG_DICT = { 'umiami': 'qdc',
                 'fsu': 'mods' }
 
 # REPOX_EXPORT_DIR = '/repox/export'
-REPOX_EXPORT_DIR = 'name_test/' # local test
+REPOX_EXPORT_DIR = 'name_tests' # local test
 
 # OUTPUT_DIR = '~/FlaLD_JSON'
 OUTPUT_DIR = '' # local test
