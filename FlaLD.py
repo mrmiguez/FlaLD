@@ -616,6 +616,7 @@ def FlaLD_MODS(file_in, tn, dprovide, iprovide=None):
                     code, lat, long, label = assets.tgn_cache(geo_code)
                     sourceResource['spatial'].append({"lat": lat,
                                                       "long": long,
+                                                      "name": label,
                                                       "_:attribution": "This record contains information from Thesaurus of Geographic Names (TGN) which is made available under the ODC Attribution License." })
 
                     #tgn_prefix = 'http://vocab.getty.edu/tgn/'
